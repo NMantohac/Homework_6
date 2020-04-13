@@ -23,7 +23,7 @@ function initPage() {
         
         axios.get(queryURL)
         .then(response => {
-            console.log(response);
+            // console.log(response);
 
             // Display Current Date using Moment.js
             const currentDate = moment().format('L');
@@ -76,7 +76,7 @@ function initPage() {
         axios.get(forecastQueryURL)
         .then(response => {
             // Display 5-Day Forecast under Current Conditions
-            console.log(response);
+            // console.log(response);
 
             const forecastEls = document.querySelectorAll(".forecast");
 
