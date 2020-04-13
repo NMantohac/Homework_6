@@ -129,7 +129,7 @@ function getCurrent(city) {
                 bgcolor = "red";
             }
             var uvdisp = $("<p>").attr("class", "card-text").text("UV Index: ");
-            uvdisp.append($("<span>").attr("class", "uvindex").attr("style", ("background-color:" + bgcolor)).text(uvindex));
+            uvdisp.append($("<span>").attr("id", "uv-index").attr("style", ("background-color:" + bgcolor)).text(uvindex));
             cardBody.append(uvdisp);
 
         });
@@ -147,13 +147,13 @@ function getForecast(city) {
         method: "GET"
     }).then(function (response) {
         //add container div for forecast cards
-        var newrow = $("<div>").attr("class", "forecast");
+        var newrow = $("<div>").attr("id", "forecast");
         $("#earthforecast").append(newrow);
 
         //loop through array response to find the forecasts for 15:00
         for (var i = 0; i < response.list.length; i++) {
             if (response.list[i].dt_txt.indexOf("15:00:00") !== -1) {
-                var newCol = $("<div>").attr("class", "one-fifth");
+                var newCol = $("<div>").attr("id", "forecast-card");
                 newrow.append(newCol);
 
                 var newCard = $("<div>").attr("class", "card text-white bg-primary");
@@ -193,7 +193,7 @@ function saveLoc(loc){
     showPrevious();
 }
 
-$("#searchbtn").on("click", function () {
+$("#searchBtn").on("click", function () {
     //don't refresh the screen
     event.preventDefault();
     //grab the value of the input field
@@ -211,11 +211,27 @@ $("#searchbtn").on("click", function () {
     }
 });
 
+// Allow Location Button (if prompted)
 $(document).on("click", "#loc-btn", function () {
     clear();
     currentLoc = $(this).text();
     showPrevious();
     getCurrent(currentLoc);
 });
+
+// Clear History Button
+$("#clear-history").on("click", () => {
+    clear();
+    $("#prevSearches").empty();
+    savedLocations = [];
+})
+
+// Enter Key
+$(document).keyup(function(event) { 
+    event.preventDefault();
+    if (event.keyCode === 13) { 
+        $("#searchBtn").click(); 
+    } 
+}); 
 
 initialize();

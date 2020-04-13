@@ -16,22 +16,25 @@
 
     <header>
         <nav class="navbar navbar-dark bg-dark">
-            <span class="navbar-brand mb-0 h1 w-100 text-center">Weather Dashboard</span>
+            <span id="navbar-title" class="navbar-brand mb-0 h1 w-100 text-center">Weather Dashboard</span>
         </nav>
     </header>
 
     <main>
         <div class="container-fluid">
             <div class="row mt-3">
-                <div class="col-md-3 searcharea">
+                <div id="search-area" class="col-md-3">
                     <h2 class="text-secondary">Search for a city:</h2>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" id="searchinput" type="search" aria-label="Search">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" id="searchbtn" type="submit">
+                            <button class="btn btn-primary" id="searchBtn" type="submit">
                                 <i class="material-icons">search</i>
                             </button>
                         </div>
+                    </div>
+                    <div class="text-center">
+                        <button id="clear-history" class="btn btn-primary mb-3" type="button">Clear History</button>
                     </div>
                     <div class="mt-5" id="prevSearches">
                         <!--Buttons for previous searches here-->
