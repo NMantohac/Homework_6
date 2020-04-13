@@ -3,43 +3,25 @@
 }
 
 #search-area {
-    background-color: #d1dce7;
-    padding: 20px;
+    margin-top: 20px;
+    margin-left: -30px;
     text-align: center;
 }
 
-#searchBtn{
-    padding: 6px 5px 0px 5px;
+#search-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-#clear-history {
-    margin: 0 auto;
-    text-align: center;
+#city-name {
+    font-size: 30px;
 }
 
-#uv-index {
-    padding: 5px;
+#UV-index {
+    color: black;
 }
 
-#forecast-card {
-    box-sizing: border-box;
-    width: 20%;
-    margin: 5px;
-    padding: 5px;
-    
-}
-
-#forecast-card:first-child {
-    margin-left: 0px;
-}
-
-#forecast-card:last-child{
-    margin-right: 0px;
-}
-
-#forecast {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 10px 0px;
+.forecast-date {
+    font-size: 18px;
 }
