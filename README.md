@@ -10,9 +10,9 @@ Description:
     In addition, the searched cities are saved and could be accessed again unless the 'Clear History' button is clicked or the page is
     refreshed.
   - The weather dashboard and the website is done through HTML, CSS, and Javascript code in Visual Studio Code, and utilizes
-    Bootstrap with its components and utilities. The css file contains standard css practices. The javascript file contains variables 
-    (const/let), functions, onclick events, for-loops, and if-else statements. In addition, npm initialization and installation was used
-    in order to install Axios for the API request calls, and Moment.js for the current dates. 
+    Bootstrap with its components and utilities. The css file contains standard css practices, whereas the javascript file contains
+    variables (const/let), functions, onclick events, for-loops, and if-else statements. In addition, npm initialization and
+    installation was used in order to install Axios for the API request calls, and Moment.js for the current dates. 
   
  Technologies:
   - Visual Studio Code
@@ -29,11 +29,11 @@ Description:
   - There were a few difficulties such as the local storage and the color change for the UV-Index. I had to search up and use my online
     resources, so I could understand how to correctly implement and display them on the page. 
   - Not much that I learned other than the stuff regarding this homework, such as the Open Weather API documentation (if I would need
-    to use it in the future) and the utilization ofo axios/moment.js
+    to use it in the future) and the utilization of axios/moment.js
   - I was able to solve each of my problem through persistent effort, patience, and using my online resources!
     
   Screenshot(s):
   
   Weather Dashboard - Overall Screen:
-  ![Weather Dashboard - Overall Screen:](https://puu.sh/FwSSS/9f9eb511cd.png)
+  ![Weather Dashboard - Overall Screen:](https://puu.sh/Fx4BE/7cdce6c0dc.png)
   
