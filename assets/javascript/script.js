@@ -1,10 +1,10 @@
-function initPage() {
+function initialize() {
     // Target HTML Elements
-    const $inputEl = document.getElementById("city-input");
-    const $searchEl = document.getElementById("search-button");
-    const $clearEl = document.getElementById("clear-history");
-    const $nameEl = document.getElementById("city-name");
-    const $currentPicEl = document.getElementById("current-pic");
+    const $cityInputEl = document.getElementById("city-input");
+    const $searchBtn = document.getElementById("search-button");
+    const $clearBtn = document.getElementById("clear-history");
+    const $cityNameEl = document.getElementById("city-name");
+    const $currentImageEl = document.getElementById("current-image");
     const $currentTempEl = document.getElementById("temperature");
     const $currentHumidityEl = document.getElementById("humidity");
     const $currentWindEl = document.getElementById("wind-speed");
@@ -27,12 +27,12 @@ function initPage() {
 
             // Display Current Date using Moment.js
             const currentDate = moment().format('L');
-            $nameEl.innerHTML = `${response.data.name} (${currentDate})`;
+            $cityNameEl.innerHTML = `${response.data.name} (${currentDate})`;
 
             // Display Weather Image
             const weatherImage = response.data.weather[0].icon;
-            $currentPicEl.setAttribute("src",`https://openweathermap.org/img/wn/${weatherImage}@2x.png`);
-            $currentPicEl.setAttribute("alt", response.data.weather[0].description);
+            $currentImageEl.setAttribute("src", `https://openweathermap.org/img/wn/${weatherImage}@2x.png`);
+            $currentImageEl.setAttribute("alt", response.data.weather[0].description);
             
             // Display Temperature (Fahrenheit), Humidity, and Wind Speed
             $currentTempEl.innerHTML = `Temperature: ${(response.data.main.temp)}&#176F`;
@@ -78,11 +78,11 @@ function initPage() {
             // Display 5-Day Forecast under Current Conditions
             // console.log(response);
 
-            const forecastEls = document.querySelectorAll(".forecast");
+            const $forecastEls = document.querySelectorAll(".forecast");
 
-            for (let i = 0; i < forecastEls.length; i++) {
+            for (let i = 0; i < $forecastEls.length; i++) {
                 // Forecast - Display Current Date
-                forecastEls[i].innerHTML = "";
+                $forecastEls[i].innerHTML = "";
                 const forecastIndex = i * 8 + 4;
                 const forecastDate = moment(response.data.list[forecastIndex].dt * 1000).format("L");
                 const forecastDateEl = document.createElement("p");
@@ -90,31 +90,31 @@ function initPage() {
                 forecastDateEl.setAttribute("class", "mt-3 mb-0");
                 forecastDateEl.setAttribute("id", "forecast-date");
                 forecastDateEl.innerHTML = forecastDate;
-                forecastEls[i].append(forecastDateEl);
+                $forecastEls[i].append(forecastDateEl);
 
                 // Forecast - Display Weather Image
                 const forecastWeatherEl = document.createElement("img");
                 forecastWeatherEl.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.list[forecastIndex].weather[0].icon}@2x.png`);
                 forecastWeatherEl.setAttribute("alt", response.data.list[forecastIndex].weather[0].description);
-                forecastEls[i].append(forecastWeatherEl);
+                $forecastEls[i].append(forecastWeatherEl);
 
                 // Forecast - Display Temperature (Fahrenheit) 
                 const forecastTempEl = document.createElement("p");
                 forecastTempEl.innerHTML = `Temp: ${(response.data.list[forecastIndex].main.temp)}&#176F`;
-                forecastEls[i].append(forecastTempEl);
+                $forecastEls[i].append(forecastTempEl);
 
                 // Forecast - Display Humidity 
                 const forecastHumidityEl = document.createElement("p");
                 forecastHumidityEl.innerHTML = `Humidity: ${response.data.list[forecastIndex].main.humidity}%`;
-                forecastEls[i].append(forecastHumidityEl);
+                $forecastEls[i].append(forecastHumidityEl);
                 }
             })
         });  
     }
 
     // Search Button - Event Listener
-    $searchEl.addEventListener("click", () => {
-        const searchTerm = $inputEl.value;
+    $searchBtn.addEventListener("click", () => {
+        const searchTerm = $cityInputEl.value;
         displayWeather(searchTerm);
         searchHistory.push(searchTerm);
         localStorage.setItem("search",JSON.stringify(searchHistory));
@@ -122,9 +122,9 @@ function initPage() {
     })
 
     // Clear Button - Event Listener
-    $clearEl.addEventListener("click", () => {
+    $clearBtn.addEventListener("click", () => {
         searchHistory = [];
-        $inputEl.value = "";
+        $cityInputEl.value = "";
         renderSearchHistory();
     })
 
@@ -155,9 +155,9 @@ function initPage() {
     $(document).keyup(event => { 
     event.preventDefault();
     if (event.keyCode === 13) { 
-        $searchEl.click(); 
+        $searchBtn.click(); 
     } 
 }); 
 
 }
-initPage();
+initialize();
