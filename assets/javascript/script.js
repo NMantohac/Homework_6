@@ -1,18 +1,19 @@
 function initialize() {
     // Target HTML Elements
-    const $cityInputEl = document.getElementById("city-input");
-    const $searchBtn = document.getElementById("search-button");
-    const $clearBtn = document.getElementById("clear-history");
-    const $cityNameEl = document.getElementById("city-name");
-    const $currentImageEl = document.getElementById("current-image");
-    const $currentTempEl = document.getElementById("temperature");
-    const $currentHumidityEl = document.getElementById("humidity");
-    const $currentWindEl = document.getElementById("wind-speed");
-    const $currentUVEl = document.getElementById("UV-index");
-    const $historyEl = document.getElementById("history");
+    const $cityInputEl = document.querySelector("#city-input");
+    const $searchBtn = document.querySelector("#search-button");
+    const $clearBtn = document.querySelector("#clear-history");
+    const $cityNameEl = document.querySelector("#city-name");
+    const $currentImageEl = document.querySelector("#current-image");
+    const $currentTempEl = document.querySelector("#temperature");
+    const $currentHumidityEl = document.querySelector("#humidity");
+    const $currentWindEl = document.querySelector("#wind-speed");
+    const $currentUVEl = document.querySelector("#UV-index");
+    const $historyEl = document.querySelector("#history");
     
+    // Grab From Local Storage
     let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
-    console.log(searchHistory);
+    // console.log(searchHistory);
     
     const APIKey = "0889b515e7870abc983afdf32bd83ed9";
 
@@ -51,6 +52,7 @@ function initialize() {
             const UVIndex = document.createElement("span");
             const UVIndexValue = response.data[0].value;
 
+            // UV Index Color
             if (UVIndexValue <= 3) {
                 UVIndex.setAttribute("style", "background-color: green");
             }
@@ -128,7 +130,7 @@ function initialize() {
         renderSearchHistory();
     })
 
-    // Previous Searched Cities
+    // Previously Searched Cities
     function renderSearchHistory() {
         $historyEl.innerHTML = "";
 
@@ -146,6 +148,7 @@ function initialize() {
         }
     }
 
+    // Display City Weather based on History and its Position
     renderSearchHistory();
     if (searchHistory.length > 0) {
         displayWeather(searchHistory[searchHistory.length - 1]);

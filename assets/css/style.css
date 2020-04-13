@@ -1,5 +1,6 @@
 #navbar-title {
-    font-size: 36px;
+    font-size: 48px;
+    font-weight: bold;
 }
 
 #search-area {
@@ -21,10 +22,15 @@
 
 #city-name {
     font-size: 30px;
+    font-weight: bold;
 }
 
 #UV-index {
     color: black;
+}
+
+#forecast-title {
+    text-align: center;
 }
 
 #forecast-date {
