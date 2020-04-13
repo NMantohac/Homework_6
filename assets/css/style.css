@@ -9,9 +9,14 @@
 }
 
 #search-title {
+    padding: 10px;
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 20px;
+}
+
+#city-input,
+#search-button {
+    margin-top: 20px;
 }
 
 #city-name {
@@ -22,6 +27,6 @@
     color: black;
 }
 
-.forecast-date {
+#forecast-date {
     font-size: 18px;
 }

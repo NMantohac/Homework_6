@@ -87,7 +87,8 @@ function initPage() {
                 const forecastDate = moment(response.data.list[forecastIndex].dt * 1000).format("L");
                 const forecastDateEl = document.createElement("p");
 
-                forecastDateEl.setAttribute("class", "mt-3 mb-0 forecast-date");
+                forecastDateEl.setAttribute("class", "mt-3 mb-0");
+                forecastDateEl.setAttribute("id", "forecast-date");
                 forecastDateEl.innerHTML = forecastDate;
                 forecastEls[i].append(forecastDateEl);
 
@@ -123,6 +124,7 @@ function initPage() {
     // Clear Button - Event Listener
     $clearEl.addEventListener("click", () => {
         searchHistory = [];
+        $inputEl.value = "";
         renderSearchHistory();
     })
 
