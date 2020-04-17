@@ -2,7 +2,7 @@ function initialize() {
     // Target HTML Elements
     const $cityInputEl = document.querySelector("#city-input");
     const $searchBtn = document.querySelector("#search-button");
-    const $clearBtn = document.querySelector("#clear-history");
+    const $clearBtn = document.querySelector("#clear-history-button");
     const $cityNameEl = document.querySelector("#city-name");
     const $currentImageEl = document.querySelector("#current-image");
     const $currentTempEl = document.querySelector("#temperature");
@@ -53,17 +53,21 @@ function initialize() {
             const UVIndexValue = response.data[0].value;
 
             // UV Index Color
-            if (UVIndexValue <= 3) {
-                UVIndex.setAttribute("style", "background-color: green");
+            if (UVIndexValue <= 3.00) {
+                // UVIndex.setAttribute("class", "green");
+                UVIndex.style.backgroundColor = "green";
             }
-            else if (UVIndexValue >= 3 || UVIndexValue <= 6) {
-                UVIndex.setAttribute("style", "background-color: yellow");
+            else if (UVIndexValue >= 3.00 && UVIndexValue <= 6.00) {
+                // UVIndex.setAttribute("class", "yellow");
+                UVIndex.style.backgroundColor = "yellow";
             }
-            else if (UVIndexValue >= 6 || UVIndexValue <= 8) {
-                UVIndex.setAttribute("style", "background-color: orange");
+            else if (UVIndexValue >= 6.00 && UVIndexValue <= 8.00) {
+                // UVIndex.setAttribute("class", "orange");
+                UVIndex.style.backgroundColor = "orange";
             }
             else {
-                UVIndex.setAttribute("style", "background-color: red");
+                // UVIndex.setAttribute("class", "red");
+                UVIndex.style.backgroundColor = "red";
             }
 
             UVIndex.innerHTML = UVIndexValue;
@@ -119,7 +123,14 @@ function initialize() {
         const searchTerm = $cityInputEl.value;
         displayWeather(searchTerm);
         searchHistory.push(searchTerm);
-        localStorage.setItem("search",JSON.stringify(searchHistory));
+        // // Find existing matching city and remove from DOM and array
+        // for (let i = 0; searchHistory.length; i++) {
+        //     if (searchHistory[i] === searchTerm) {
+                
+        //         searchHistory.splice(i, 1)
+        //     }  
+        // }
+        localStorage.setItem("search", JSON.stringify(searchHistory));
         renderSearchHistory();
     })
 
@@ -135,6 +146,7 @@ function initialize() {
         $historyEl.innerHTML = "";
 
         for (let i = 0; i < searchHistory.length; i++) {
+
             const historyItem = document.createElement("input");
             
             historyItem.setAttribute("type", "text");
