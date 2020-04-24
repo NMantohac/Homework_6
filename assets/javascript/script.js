@@ -13,7 +13,6 @@ function initialize() {
     
     // Grab From Local Storage
     let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
-    // console.log(searchHistory);
     
     const APIKey = "0889b515e7870abc983afdf32bd83ed9";
 
@@ -24,7 +23,6 @@ function initialize() {
         
         axios.get(queryURL)
         .then(response => {
-            // console.log(response);
 
             // Display Current Date using Moment.js
             const currentDate = moment().format('L');
@@ -54,19 +52,15 @@ function initialize() {
 
             // UV Index Color
             if (UVIndexValue <= 3.00) {
-                // UVIndex.setAttribute("class", "green");
                 UVIndex.style.backgroundColor = "green";
             }
             else if (UVIndexValue >= 3.00 && UVIndexValue <= 6.00) {
-                // UVIndex.setAttribute("class", "yellow");
                 UVIndex.style.backgroundColor = "yellow";
             }
-            else if (UVIndexValue >= 6.00 && UVIndexValue <= 8.00) {
-                // UVIndex.setAttribute("class", "orange");
+            else if (UVIndexValue >= 6.00 && UVIndexValue <= 9.00) {
                 UVIndex.style.backgroundColor = "orange";
             }
             else {
-                // UVIndex.setAttribute("class", "red");
                 UVIndex.style.backgroundColor = "red";
             }
 
@@ -82,7 +76,6 @@ function initialize() {
         axios.get(forecastQueryURL)
         .then(response => {
             // Display 5-Day Forecast under Current Conditions
-            // console.log(response);
 
             const $forecastEls = document.querySelectorAll(".forecast");
 
@@ -118,22 +111,6 @@ function initialize() {
         });  
     }
 
-    // Search Button - Event Listener
-    $searchBtn.addEventListener("click", () => {
-        const searchTerm = $cityInputEl.value;
-        displayWeather(searchTerm);
-        searchHistory.push(searchTerm);
-        // // Find existing matching city and remove from DOM and array
-        // for (let i = 0; searchHistory.length; i++) {
-        //     if (searchHistory[i] === searchTerm) {
-                
-        //         searchHistory.splice(i, 1)
-        //     }  
-        // }
-        localStorage.setItem("search", JSON.stringify(searchHistory));
-        renderSearchHistory();
-    })
-
     // Clear Button - Event Listener
     $clearBtn.addEventListener("click", () => {
         searchHistory = [];
@@ -152,7 +129,9 @@ function initialize() {
             historyItem.setAttribute("type", "text");
             historyItem.setAttribute("readonly", true);
             historyItem.setAttribute("class", "form-control d-block bg-white");
+            historyItem.setAttribute("id", searchHistory[i]);
             historyItem.setAttribute("value", searchHistory[i]);
+
             historyItem.addEventListener("click", () => {
                 displayWeather(historyItem.value);
             })
@@ -160,11 +139,24 @@ function initialize() {
         }
     }
 
-    // Display City Weather based on History and its Position
+    // Display City Weather based on History and Last Position
     renderSearchHistory();
     if (searchHistory.length > 0) {
         displayWeather(searchHistory[searchHistory.length - 1]);
     }
+
+    // Search Button - Event Listener
+    $searchBtn.addEventListener("click", () => {
+        const searchTerm = $cityInputEl.value.toLowerCase();
+        displayWeather(searchTerm);
+
+        // If the city name is already in the searchHistory array, then it will just return and not run the rest
+        if (searchHistory.indexOf(searchTerm) > -1) return;
+        
+        searchHistory.push(searchTerm);
+        renderSearchHistory();
+        localStorage.setItem("search", JSON.stringify(searchHistory));
+    })
 
     // Enter Key
     $(document).keyup(event => { 
@@ -175,4 +167,5 @@ function initialize() {
 }); 
 
 }
+
 initialize();
