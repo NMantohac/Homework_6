@@ -1,8 +1,8 @@
 # Homework_6
 
 URL Links:
-  1) https://github.com/NMantohac/Homework_6_Weather_Dashboard
-  2) https://nmantohac.github.io/Homework_6_Weather_Dashboard/
+  1) GitHub: https://github.com/NMantohac/Weather-Dashboard
+  2) GitHub Pages: https://nmantohac.github.io/Weather-Dashboard/
   
 Description:
   - A weather dashboard that searches up a city name and displays the current weather for that city, along with the a 5-day forecast.
